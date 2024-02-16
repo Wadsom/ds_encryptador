@@ -1,9 +1,13 @@
 package com.wadson.ds_encryptador.DTO;
 
 import com.wadson.ds_encryptador.Entity.MessageEntity;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class MessageDTO {
     private Long id;
+    @NotNull
+    @NotBlank
     private String text;
 
     public MessageDTO() {

@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import org.apache.coyote.Response;
 import org.aspectj.bridge.Message;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -40,8 +41,17 @@ public class MessageResource {
         return ResponseEntity.created(uri).body(dto);
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<MessageDTO> alterMode(@PathVariable Long id, @RequestBody @Valid MessageDTO dto) {
+        dto = messageServ.putMethod(id, dto);
+        return ResponseEntity.status(HttpStatus.OK).body(dto);
+    }
 
-
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<MessageDTO> delete(@PathVariable Long id) {
+        messageServ.deleteMethod(id);
+        return ResponseEntity.noContent().build();
+    }
 
 
 }
