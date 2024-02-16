@@ -1,5 +1,6 @@
 package com.wadson.ds_encryptador.Entity;
 
+import com.wadson.ds_encryptador.DTO.MessageDTO;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -19,6 +20,10 @@ public class MessageEntity {
 
     public MessageEntity(String text) {
         this.text = text;
+    }
+
+    public MessageEntity(MessageDTO dto) {
+        this.text = dto.getText();
     }
 
     public Long getId() {
